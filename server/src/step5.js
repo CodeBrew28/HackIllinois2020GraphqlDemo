@@ -5,14 +5,13 @@ const { ApolloServer, gql } = require("apollo-server-express");
 // Example 5: Objects can return objects, allowing us to nest more complex data 
 // A attendee can have a teammate that is another attendee
 // {
-//  allAttendees {
-//   name
-//   id
-//   teammate {
+//   allAttendees {
 //     id
-//     name
+//     teammates {
+//       id
+//       name
+//     }
 //   }
-// }
 // }
 
 
@@ -26,7 +25,7 @@ const schema = gql`
   type Attendee {
     id: ID!
     name: String!
-    teammate: Attendee!
+    teammates: [Attendee!]
   }
 `;
 
@@ -42,7 +41,7 @@ const allAttendees = {
   2: {
     id: "2",
     name: "Bob",
-    teammate: {
+    teammates: {
         id: "1",
         name: "John",
     }
@@ -54,6 +53,11 @@ const resolvers = {
     allAttendees: () => {
         return Object.values(allAttendees);
     },
+  },
+  Attendee: {
+    teammates: attendee => {
+      return Object.values(allAttendees).filter(teammmate => teammmate.id != attendee.id )
+    }
   }
 };
 
