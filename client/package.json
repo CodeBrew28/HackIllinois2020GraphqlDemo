@@ -1,0 +1,20 @@
+{
+  "name": "react-intro",
+  "version": "1.0.0",
+  "description": "Step 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-boost": "^0.1.23",
+    "graphql": "^14.0.2",
+    "react": "^16.4.2",
+    "react-apollo": "^2.3.3",
+    "react-dom": "^16.4.2",
+    "react-scripts": "^1.1.5"
+  }
+}
